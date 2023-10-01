@@ -58,6 +58,25 @@ class ArticleAppBar extends StatelessWidget{
           ),
 
 
+          Container(
+            width: getDeviceWidth(context) * 0.15,
+            height: getDeviceHeight(context) * 0.15,
+            margin: EdgeInsets.only(
+              top: getDeviceHeight(context) * 0.025,
+              bottom: getDeviceHeight(context) * 0.025,
+            ),
+            child: IconButton(
+              onPressed : (){
+                viewModel.isClipBoardUsed = true;
+                viewModel.notifyListeners();
+                viewModel.enableClipBoardAnimation(context, articleTitle, "${articleDate}\n${articleHour}\n${articleLocation}", articleImage, articleText, "intervienen :  \n${articleMembers}");
+              },
+              icon: Icon(viewModel.getClipboardState() ? Icons.check_rounded : Icons.paste_rounded, color: viewModel.getDarkModeState() ? Colors.white : Colors.black),
+            ),
+
+          ),
+
+
           // Export Article
           Container(
             width: getDeviceWidth(context) * 0.15,

@@ -50,32 +50,7 @@ class ArticleSheet extends StatelessWidget{
                   right: getDeviceWidth(context) * 0.2,
                   bottom: kIsWeb ? getDeviceHeight(context) * 0.02 : getDeviceHeight(context) * 0.05,
                 ),
-                child: Stack(
-                  children: [
-                    Container(
-                      width: getDeviceWidth(context) * 0.6,
-                      child: Text(eventTitle, style: TextStyle(color: viewModel.getDarkModeState()? Colors.white : Colors.black, fontSize: getDeviceHeight(context) * 0.045, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-                    ),
-                    Container(
-                      width: getDeviceWidth(context) * 0.15,
-                      height: getDeviceHeight(context) * 0.15,
-                      margin: EdgeInsets.only(
-                        top: getDeviceHeight(context) * 0.025,
-                        bottom: getDeviceHeight(context) * 0.025,
-                        left: getDeviceWidth(context) * 0.5,
-                      ),
-                      child: IconButton(
-                        onPressed : (){
-                          viewModel.isClipBoardUsed = true;
-                          viewModel.notifyListeners();
-                          viewModel.enableClipBoardAnimation(context, eventTitle, "${eventDate}\n${eventHour}\n${eventLocation}", eventImage, eventText, "intervienen :  \n${eventMembers}");
-                        },
-                        icon: Icon(viewModel.getClipboardState() ? Icons.check_rounded : Icons.paste_rounded, color: viewModel.getDarkModeState() ? Colors.white : Colors.black),
-                      ),
-
-                    ),
-                  ],
-                )
+                child: Text(eventTitle, style: TextStyle(color: viewModel.getDarkModeState()? Colors.white : Colors.black, fontSize: getDeviceHeight(context) * 0.045, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
               ),
 
               // Article Details
