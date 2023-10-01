@@ -12,7 +12,10 @@ class Events{
     required this.day,
     required this.image,
     required this.text,
-    required this.ubication
+    required this.ubication,
+    required this.hour,
+    required this.members,
+    required this.location,
 });
 
   final String name;
@@ -22,6 +25,9 @@ class Events{
   final String image;
   final String text;
   final String ubication;
+  final String hour;
+  final String members;
+  final String location;
 
   static const eventsTable = """
     CREATE TABLE IF NOT EXISTS events(
@@ -31,12 +37,15 @@ class Events{
       day TEXT,
       image TEXT,
       text TEXT,
-      ubication TEXT
+      ubication TEXT,
+      hour TEXT,
+      members TEXT,
+      location TEXT
     );
   """;
 
-  Map<String,dynamic> toMap() => {"name" :  name, "year" :  year, "month" :  month, "day" :  day, "image" :  image, "text" :  text, "ubication" :  ubication};
-  factory Events.fromMap(Map<String,dynamic> map) => Events(name: map["name"], year: map["year"], month: map["month"], day: map["day"], image: map["image"], text: map["text"], ubication: map["ubication"]);
+  Map<String,dynamic> toMap() => {"name" :  name, "year" :  year, "month" :  month, "day" :  day, "image" :  image, "text" :  text, "ubication" :  ubication, "hour" : hour, "members" :  members, "location" :  location};
+  factory Events.fromMap(Map<String,dynamic> map) => Events(name: map["name"], year: map["year"], month: map["month"], day: map["day"], image: map["image"], text: map["text"], ubication: map["ubication"], hour: map["hour"], members: map["members"], location: map["location"]);
 
 
   static createEventsTable() async {

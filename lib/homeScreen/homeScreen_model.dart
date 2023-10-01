@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:quiver/async.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,15 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   bool isMenuOpened = false;
   bool isModelReady = false;
   bool isEventDismissed = true;
+  List<Events> currentEvents = [];
+  String latestEventTitle = "";
   String latestEventImage = "";
+  String latestEventDate = "";
+  String latestEventText = "";
+  String latestEventUbication =  "";
+  String latestEventHour = "";
+  String latestEventMembers = "";
+  String latestEventLocation = "";
 
   @override
   void initialise(){
@@ -33,15 +43,30 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     notifyListeners();
   }
 
+  bool getDarkModeState(){
+    return isDarkModeEnabled;
+  }
+
   bool getMenuState(){
     return isMenuOpened;
   }
 
   void getCurrentEvents() async {
+
     try {
       events = await Events.retrieveExistingEvents();
       notifyListeners();
     } catch (e){
+      EventsData.insertNewEvents();
+      events = await Events.retrieveExistingEvents();
+      notifyListeners();
+    }
+
+    if (events.length != EventsData.eventsMap.keys.length){
+      // We're missing some events!
+      events = [];
+      notifyListeners();
+
       EventsData.insertNewEvents();
       events = await Events.retrieveExistingEvents();
       notifyListeners();
@@ -52,27 +77,43 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
 
   }
 
+  fetchLatestEventInfo(Events event){
+    // Fetch latest event info from an instance
+    latestEventTitle = event.name;
+    latestEventImage = event.image;
+    latestEventText = event.text;
+    latestEventDate = "${event.day}/${event.month}/${event.year}";
+    latestEventUbication = event.ubication;
+    latestEventHour = "${event.hour}h";
+    latestEventMembers = event.members;
+    latestEventLocation =  event.location;
+
+    notifyListeners();
+  }
+
   getLatestEvent(){
     // This method gets latest event based on current day and month
-
+    Random randomEvent = Random();
+    var randomEventIndex;
    var currentDay = DateTime.now().day;
    var currentMonth = DateTime.now().month;
-
-   var latestEvent;
+   late Events latestEvent;
 
     for (Events event in events){
-      if (event.month == currentMonth || int.parse(event.month) > currentMonth){
-        if (event.day == currentDay || int.parse(event.day) > currentDay ){
-          latestEventImage = event.image;
+      if (event.month == currentMonth && int.parse(event.day) >= currentDay || int.parse(event.month) > currentMonth){
+          currentEvents.add(event);
           notifyListeners();
-        } else if (int.parse(event.day) < currentDay && currentMonth < int.parse(event.month)){
-          latestEventImage = event.image;
-          notifyListeners();
-        }
       }
     }
 
-    print("image : $latestEventImage");
+    if (currentEvents.length > 1){
+      randomEventIndex = randomEvent.nextInt(currentEvents.length);
+      latestEvent = events[randomEventIndex];
+    } else {
+      latestEvent = events[0];
+    }
+
+    fetchLatestEventInfo(latestEvent);
 
     isEventDismissed = false;
     notifyListeners();

@@ -19,21 +19,26 @@ class AnnouncementDialog extends StatelessWidget{
       body: Stack(
         children: [
           // Floating Banner
-          Container(
-            width: getDeviceWidth(context) * 0.9,
-            height: getDeviceHeight(context) * 0.75,
-            margin: EdgeInsets.only(
-              top: getDeviceHeight(context) * 0.05,
-              bottom: getDeviceHeight(context) * 0.2,
-              left: getDeviceWidth(context) * 0.05,
-              right: getDeviceWidth(context) * 0.05
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image: AssetImage(viewModel.latestEventImage),
-                fit: kIsWeb ? BoxFit.fitHeight : BoxFit.fill
-              )
+          InkWell(
+            onTap : (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventReaderView(eventTitle: viewModel.latestEventTitle, eventImage: viewModel.latestEventImage, eventLocation: viewModel.latestEventLocation, eventDate: viewModel.latestEventDate, eventHour: viewModel.latestEventHour, eventMembers: viewModel.latestEventMembers, eventText: viewModel.latestEventText, eventUbication: viewModel.latestEventUbication)));
+            },
+            child : Container(
+              width: getDeviceWidth(context) * 0.9,
+              height: getDeviceHeight(context) * 0.75,
+              margin: EdgeInsets.only(
+                top: getDeviceHeight(context) * 0.05,
+                bottom: getDeviceHeight(context) * 0.2,
+                left: getDeviceWidth(context) * 0.05,
+                right: getDeviceWidth(context) * 0.05
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                image: DecorationImage(
+                  image: AssetImage(viewModel.latestEventImage),
+                  fit: kIsWeb ? BoxFit.fitHeight : BoxFit.fill
+                )
+              ),
             ),
           ),
 

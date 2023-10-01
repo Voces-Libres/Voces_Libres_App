@@ -28,7 +28,7 @@ class BannerWidget extends StatelessWidget{
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(viewModel.isLogoPressed? viewModel.logoUri = "assets/logos/vlight.png" :  viewModel.logoUri = "assets/logos/vdark.png"
-              ), fit: kIsWeb ?  BoxFit.fitHeight :  BoxFit.fitWidth,
+              ), fit: kIsWeb && getDeviceWidth(context) > 400 ?  BoxFit.fitHeight :  BoxFit.fitWidth,
             ),
             borderRadius: BorderRadius.circular(23),
           ),
