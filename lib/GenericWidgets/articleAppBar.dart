@@ -1,11 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher_platform_interface/url_launcher_platform_interface.dart';
 import '../exports.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:share_plus/src/share_plus_web.dart';
 
 class ArticleAppBar extends StatelessWidget{
   @override
-  const ArticleAppBar({
+   const ArticleAppBar({
     required this.viewModel,
     required this.articleImage,
     required this.articleText,
@@ -63,8 +66,14 @@ class ArticleAppBar extends StatelessWidget{
               onPressed: () async {
                 final data = await rootBundle.load(articleImage);
                 final buffer = data.buffer;
-                final share = await Share.shareXFiles(
-                    [XFile.fromData(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes), name: "evento_1.jpg", mimeType: "jpg" ),], subject: articleTitle, text: "${articleTitle}\n\n${articleDate}\n${articleHour}\n${articleLocation}\n\n${articleText}\n\n\n\nIntervienen : \n\n${articleMembers.replaceAll(",", "\n")}");
+                if (kIsWeb){
+                  final share = await SharePlusWebPlugin(UrlLauncherPlatform.instance.launch("https://twitter.com/intent/tweet?&image='${[XFile.fromData(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes), name: "evento_1.jpg", mimeType: "jpg" ),]}'&text=${articleTitle}\n\n${articleDate}\n${articleHour}\n${articleLocation}\n\n${articleText}\n\n\n\nIntervienen : \n\n${articleMembers.replaceAll(",", "\n")}", useSafariVC: false, useWebView: true, enableJavaScript: true, enableDomStorage: false, universalLinksOnly: false, headers: {}) as UrlLauncherPlatform).shareXFiles(
+                      [XFile.fromData(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes), name: "evento_1.jpg", mimeType: "jpg" ),], subject: articleTitle, text: "${articleTitle}\n\n${articleDate}\n${articleHour}\n${articleLocation}\n\n${articleText}\n\n\n\nIntervienen : \n\n${articleMembers.replaceAll(",", "\n")}");
+                } else {
+                  final share = await Share.shareXFiles(
+                      [XFile.fromData(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes), name: "evento_1.jpg", mimeType: "jpg" ),], subject: articleTitle, text: "${articleTitle}\n\n${articleDate}\n${articleHour}\n${articleLocation}\n\n${articleText}\n\n\n\nIntervienen : \n\n${articleMembers.replaceAll(",", "\n")}");
+                }
+
               },
               icon: Icon(Icons.share_rounded, color: viewModel.getDarkModeState() ? Colors.white : Colors.black),
             ),

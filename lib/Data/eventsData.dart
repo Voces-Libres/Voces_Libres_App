@@ -12,7 +12,7 @@ class EventsData{
       "day" : "9",
       "ubication" :  "",
       "hour" :  "12:00",
-      "members" : "Juan Casillas Bayo, Malena Contesí, Miguel Garrido",
+      "members" : "Juan Casillas Bayo, Malena Contestí, Miguel Garrido",
       "location" :  "Aula Magna\nUC3M\n(Campus Getafe)"
     }
   };
