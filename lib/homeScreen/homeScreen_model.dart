@@ -20,6 +20,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   bool isMenuOpened = false;
   bool isModelReady = false;
   bool isEventDismissed = true;
+  bool isClipBoardUsed = false;
   List<Events> currentEvents = [];
   String latestEventTitle = "";
   String latestEventImage = "";
@@ -43,8 +44,17 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     notifyListeners();
   }
 
+  void setClipboardState(bool state){
+    isClipBoardUsed = state;
+    notifyListeners();
+  }
+
   bool getDarkModeState(){
     return isDarkModeEnabled;
+  }
+
+  bool getClipboardState(){
+    return isClipBoardUsed;
   }
 
   bool getMenuState(){

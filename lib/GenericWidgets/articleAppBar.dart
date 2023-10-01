@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher_platform_interface/url_launcher_platform_interface.dart';
 import '../exports.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:share_plus/src/share_plus_web.dart';
 
 class ArticleAppBar extends StatelessWidget{
   @override
@@ -47,7 +46,7 @@ class ArticleAppBar extends StatelessWidget{
             height: getDeviceHeight(context) * 0.15,
             margin: EdgeInsets.only(
               left: getDeviceWidth(context) * 0.025,
-              right: getDeviceWidth(context) * 0.65
+              right: getDeviceWidth(context) * 0.5
             ),
             child: IconButton(
               onPressed: (){
@@ -58,21 +57,24 @@ class ArticleAppBar extends StatelessWidget{
             ),
           ),
 
+
           // Export Article
           Container(
             width: getDeviceWidth(context) * 0.15,
             height: getDeviceHeight(context) * 0.15,
             child: IconButton(
               onPressed: () async {
-                final data = await rootBundle.load(articleImage);
-                final buffer = data.buffer;
-                if (kIsWeb){
-                  final share = await SharePlusWebPlugin(UrlLauncherPlatform.instance.launch("https://twitter.com/intent/tweet?&image='${[XFile.fromData(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes), name: "evento_1.jpg", mimeType: "jpg" ),]}'&text=${articleTitle}\n\n${articleDate}\n${articleHour}\n${articleLocation}\n\n${articleText}\n\n\n\nIntervienen : \n\n${articleMembers.replaceAll(",", "\n")}", useSafariVC: false, useWebView: true, enableJavaScript: true, enableDomStorage: false, universalLinksOnly: false, headers: {}) as UrlLauncherPlatform).shareXFiles(
-                      [XFile.fromData(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes), name: "evento_1.jpg", mimeType: "jpg" ),], subject: articleTitle, text: "${articleTitle}\n\n${articleDate}\n${articleHour}\n${articleLocation}\n\n${articleText}\n\n\n\nIntervienen : \n\n${articleMembers.replaceAll(",", "\n")}");
-                } else {
+                if (!kIsWeb){
+                  final data = await rootBundle.load(articleImage);
+                  final buffer = data.buffer;
                   final share = await Share.shareXFiles(
                       [XFile.fromData(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes), name: "evento_1.jpg", mimeType: "jpg" ),], subject: articleTitle, text: "${articleTitle}\n\n${articleDate}\n${articleHour}\n${articleLocation}\n\n${articleText}\n\n\n\nIntervienen : \n\n${articleMembers.replaceAll(",", "\n")}");
+                } else  {
+                  SnackBar message = SnackBar(content: Text("Esta función es exclusiva de Android", style: TextStyle(color: viewModel.getDarkModeState() ? Colors.black :  Colors.white,), textAlign: TextAlign.center,), backgroundColor: viewModel.getDarkModeState() ? Colors.white :  Colors.black, behavior: SnackBarBehavior.floating,);
+                  ScaffoldMessenger.of(context).showSnackBar(message);
+
                 }
+
 
               },
               icon: Icon(Icons.share_rounded, color: viewModel.getDarkModeState() ? Colors.white : Colors.black),
