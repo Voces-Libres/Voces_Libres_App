@@ -1,21 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter/material.dart';
+import 'package:voces_libres/TransparencyScreen/transparencyScreen_model.dart';
 import '../exports.dart';
 
-class WhereWeAreScreenView extends StackedView<WhereWeAreScreenModel>{
+class TransparencyScreenView extends StackedView<TransparencyScreenModel>{
   @override
-  const WhereWeAreScreenView({super.key});
+  const TransparencyScreenView({super.key});
 
   @override
   Widget builder(
       BuildContext context,
-      WhereWeAreScreenModel viewModel,
+      TransparencyScreenModel viewModel,
       Widget? child
       ){
     return Scaffold(
       body: Stack(
         children: [
-          // Generic Background Theme
+// Generic Background Theme
           BackgroundTheme(backgroundColor: vl_green,),
 
           // Generic App Bar
@@ -31,7 +32,6 @@ class WhereWeAreScreenView extends StackedView<WhereWeAreScreenModel>{
       ),
     );
   }
-
   @override
-  WhereWeAreScreenModel viewModelBuilder(BuildContext context) => WhereWeAreScreenModel();
+  TransparencyScreenModel viewModelBuilder(BuildContext context) => TransparencyScreenModel();
 }

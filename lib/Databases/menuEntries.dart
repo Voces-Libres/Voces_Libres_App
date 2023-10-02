@@ -19,7 +19,7 @@ class MenuEntries{
       name TEXT PRIMARY KEY,
       menu TEXT,
       route TEXT,
-      FOREIGN KEY menu REFERENCES menus(name)
+      FOREIGN KEY(menu) REFERENCES menus(name)
     );
   """;
 

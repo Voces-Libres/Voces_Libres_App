@@ -5,6 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 import 'package:voces_libres/Data/eventsData.dart';
 import 'package:voces_libres/Data/menusData.dart';
+import '../Data/menusEntriesData.dart';
 import '../exports.dart';
 import 'package:quiver/time.dart';
 
@@ -13,11 +14,12 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   String logoUri = "assets/logos/vdark.png";
   bool defaultLogo = true;
   List<Menus> menus = [];
+  List<MenuEntries> menusEntries = [];
   List<Events> events  = [];
   Color colorTheme = Colors.white;
   bool isDarkModeEnabled = true;
   bool isLogoPressed =  false;
-  bool isMenuOpened = false;
+  bool isMenuOpened = true;
   bool isModelReady = false;
   bool isEventDismissed = true;
   bool isClipBoardUsed = false;
@@ -164,6 +166,17 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
 
     // Refresh UI
     notifyListeners();
+  }
+
+  void getMenuEntries(String menu) async {
+    try{
+      menusEntries = await MenuEntries.retrieveMenuEntries(menu);
+    } catch (e){
+      MenusEntriesData.insertEntriesIntoMenu();
+      menusEntries = await MenuEntries.retrieveMenuEntries(menu);
+    }
+    notifyListeners();
+
   }
 
 

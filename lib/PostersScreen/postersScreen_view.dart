@@ -1,15 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter/material.dart';
+import 'package:voces_libres/PostersScreen/postersScreen_model.dart';
 import '../exports.dart';
 
-class WhereWeAreScreenView extends StackedView<WhereWeAreScreenModel>{
+class PostersScreenView extends StackedView<PostersScreenModel>{
   @override
-  const WhereWeAreScreenView({super.key});
+  const PostersScreenView({super.key});
 
   @override
   Widget builder(
       BuildContext context,
-      WhereWeAreScreenModel viewModel,
+      PostersScreenModel viewModel,
       Widget? child
       ){
     return Scaffold(
@@ -27,11 +28,11 @@ class WhereWeAreScreenView extends StackedView<WhereWeAreScreenModel>{
 
           // Generic Footer
           FooterWidget(),
+
         ],
       ),
     );
   }
-
   @override
-  WhereWeAreScreenModel viewModelBuilder(BuildContext context) => WhereWeAreScreenModel();
+  PostersScreenModel viewModelBuilder(BuildContext context) => PostersScreenModel();
 }

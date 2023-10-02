@@ -1,50 +1,57 @@
 import '../exports.dart';
 
-class MenusEntriesData{
+class MenusEntriesData {
 
 
-  static Map<String,dynamic> menuEntriesMap = {
+  static Map<String, dynamic> menuEntriesMap = {
 
-    "Quienes Somos" : {
-      "menu" : "Sobre Nosotros",
-      "route" : "WhoWeAreScreen"
+    "Quienes Somos": {
+      "menu": "Sobre Nosotros",
+      "route": "WhoWeAreScreen"
     },
 
-    "Decálogo" : {
-      "menu" : "Sobre Nosotros",
-      "route" : "DecalogueScreen"
+    "Decálogo": {
+      "menu": "Sobre Nosotros",
+      "route": "DecalogueScreen"
     },
 
-    "Nuestro Equipo" : {
-      "menu" : "Sobre Nosotros",
-      "route" : "OurTeamScreen"
+    "Nuestro Equipo": {
+      "menu": "Sobre Nosotros",
+      "route": "OurTeamScreen"
     },
 
-    "Dónde Estamos" : {
-      "menu" : "Sobre Nosotros",
-      "route" : "WhereWeAreScreen"
+    "Dónde Estamos": {
+      "menu": "Sobre Nosotros",
+      "route": "WhereWeAreScreen"
+    },
+    "Manifiestos Políticos": {
+      "menu": "Documentos",
+      "route": "ManifestScreen"
+    },
+
+    "Carteles": {
+      "menu": "Documentos",
+      "route": "PostersScreen"
+    },
+
+    "Transparencia": {
+      "menu": "Documentos",
+      "route": "TransparencyScreen"
     }
   };
 
-  static insertEntriesIntoMenu() async{
+  static insertEntriesIntoMenu() async {
     // A static method that insert entries inside a menu
 
-    for (String entry in menuEntriesMap.keys){
-      try{
-        MenuEntries.insertMenuEntry
-          (MenuEntries(
-            name: entry,
-            menu: menuEntriesMap[entry]["menu"],
-            route: menuEntriesMap[entry]["route"]));
-      } catch (e){
-        // Entries table doesn't exist!
-        MenuEntries.createMenuEntriesTable();
-        MenuEntries.insertMenuEntry
-          (MenuEntries(
-            name: entry,
-            menu: menuEntriesMap[entry]["menu"],
-            route: menuEntriesMap[entry]["route"]));
-      }
+    // To be executed once
+    MenuEntries.createMenuEntriesTable();
+
+    for (String entry in menuEntriesMap.keys) {
+      MenuEntries.insertMenuEntry
+        (MenuEntries(
+          name: entry,
+          menu: menuEntriesMap[entry]["menu"],
+          route: menuEntriesMap[entry]["route"]));
     }
   }
 }

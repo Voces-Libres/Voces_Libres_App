@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:quiver/async.dart';
 import 'package:stacked/stacked.dart';
 import '../../exports.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:quiver/time.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class EventReaderModel extends HomeScreenModel implements Initialisable{
 
@@ -12,6 +16,11 @@ class EventReaderModel extends HomeScreenModel implements Initialisable{
   bool isClipboardUsed = false;
 
   final clipboard = DataWriterItem();
+  Completer<GoogleMapController> controller = Completer();
+  final CameraPosition ubication = const CameraPosition(
+      target: LatLng(37.42796133580664, -122.885749655962),
+      zoom: 14.4746,);
+
 
   @override
   bool isDarkModeEnabled = false;

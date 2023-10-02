@@ -24,7 +24,7 @@ class DocumentsScreenView extends StackedView<DocumentsScreenModel>{
 
       // Generic Menu
       if(viewModel.getMenuState())
-      MenusContainer(viewModel: viewModel),
+      MenusContainer(viewModel: viewModel, isEntryMenu: true,),
 
       // Generic Footer
       FooterWidget(),

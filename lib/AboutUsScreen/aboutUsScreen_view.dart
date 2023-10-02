@@ -25,7 +25,7 @@ class AboutUsScreenView extends StackedView<AboutUsScreenModel>{
 
           // Generic Menu
           if (viewModel.getMenuState())
-          MenusContainer(viewModel: viewModel),
+          MenusContainer(viewModel: viewModel, isEntryMenu: true,),
 
           // Footer
           FooterWidget(),

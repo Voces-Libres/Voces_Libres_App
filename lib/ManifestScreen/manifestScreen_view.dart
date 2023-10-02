@@ -1,19 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'manifestScreen_model.dart';
 import 'package:stacked/stacked.dart';
 import '../exports.dart';
 
-class WhereWeAreScreenView extends StackedView<WhereWeAreScreenModel>{
+class ManifestScreenView extends StackedView<ManifestScreenModel>{
   @override
-  const WhereWeAreScreenView({super.key});
+  const ManifestScreenView({super.key});
 
   @override
   Widget builder(
       BuildContext context,
-      WhereWeAreScreenModel viewModel,
+      ManifestScreenModel viewModel,
       Widget? child
       ){
     return Scaffold(
-      body: Stack(
+      body : Stack(
         children: [
           // Generic Background Theme
           BackgroundTheme(backgroundColor: vl_green,),
@@ -28,10 +31,9 @@ class WhereWeAreScreenView extends StackedView<WhereWeAreScreenModel>{
           // Generic Footer
           FooterWidget(),
         ],
-      ),
+      )
     );
   }
-
   @override
-  WhereWeAreScreenModel viewModelBuilder(BuildContext context) => WhereWeAreScreenModel();
+  ManifestScreenModel viewModelBuilder(BuildContext context) => ManifestScreenModel();
 }

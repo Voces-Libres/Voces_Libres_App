@@ -1,8 +1,7 @@
 import 'package:stacked/stacked.dart';
 import 'package:voces_libres/exports.dart';
 
-class DecalogueScreenModel extends HomeScreenModel implements Initialisable{
-
+class TransparencyScreenModel extends HomeScreenModel implements Initialisable{
   @override
   bool isMenuOpened = false;
 

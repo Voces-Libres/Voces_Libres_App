@@ -6,9 +6,11 @@ class MenusContainer extends StatelessWidget{
   @override
   MenusContainer({
     required this.viewModel,
+    this.isEntryMenu = false,
     super.key});
 
   final viewModel;
+  final bool isEntryMenu;
 
   @override
   Widget build(BuildContext context){
@@ -22,7 +24,7 @@ class MenusContainer extends StatelessWidget{
       ),
       child: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: viewModel.menus.length,
+          itemCount: isEntryMenu ? viewModel.menusEntries.length : viewModel.menus.length,
           itemBuilder: (BuildContext, index){
             return Container(
               margin: EdgeInsets.only(
@@ -35,7 +37,7 @@ class MenusContainer extends StatelessWidget{
             onPressed: (){
               viewModel.navigateToChoosedRoute(index, context);
               },
-            child: Text(viewModel.menus[index].name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 35), textAlign: TextAlign.center
+            child: Text(isEntryMenu ? viewModel.menusEntries[index].name : viewModel.menus[index].name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 35), textAlign: TextAlign.center
               ,),
             ),
             );

@@ -3,6 +3,7 @@ export 'homeScreen/homeScreen_view.dart';
 export 'Databases/menuEntries.dart';
 export 'Databases/menus.dart';
 export 'Databases/events.dart';
+export 'Databases/members.dart';
 export 'glovalMethods.dart';
 export 'styles.dart';
 export 'Databases/settings.dart';

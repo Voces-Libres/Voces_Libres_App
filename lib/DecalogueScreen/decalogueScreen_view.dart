@@ -16,7 +16,18 @@ class DecalogueScreenView extends StackedView<DecalogueScreenModel>{
     return Scaffold(
       body: Stack(
         children: [
+          // Generic Background Theme
+          BackgroundTheme(backgroundColor: vl_green,),
 
+          // Generic App Bar
+          GenericAppBar(viewModel: viewModel),
+
+          // Generic Menu
+          if(viewModel.getMenuState())
+            MenusContainer(viewModel: viewModel),
+
+          // Generic Footer
+          FooterWidget(),
         ],
       ),
     );

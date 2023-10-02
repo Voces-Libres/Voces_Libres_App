@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
+import 'package:voces_libres/Data/menusEntriesData.dart';
 import 'package:voces_libres/exports.dart';
 
 class AboutUsScreenModel extends HomeScreenModel implements Initialisable{
 
-  List<Menus> menus = [];
+  @override
+  bool isMenuOpened = true;
 
   @override
-  bool isMenuOpened = false;
+  navigateToChoosedRoute(index, context){
+    Navigator.of(context).pushNamed(menusEntries[index].route);
+  }
 
-  @override
-  navigateToChoosedRoute(index, context);
 
   @override
   void initialise(){
-    super.getCurrentMenuEntries();
+   super.getMenuEntries("Sobre Nosotros");
   }
 
 }
