@@ -23,13 +23,13 @@ class MembersData{
 
     "Julia Palma" :  {
       "profilePicture" : "assets/members/julia_palma.jpg",
-      "profileRole" :  "Fundadora Libres",
+      "profileRole" :  "Fundadora Voces Libres",
       "xUrl" : "https://x.com/Jon_Echeverria_"
     },
 
     "Manuel Arbona" :  {
       "profilePicture" : "assets/members/manuel_arbona.jpg",
-      "profileRole" :  "Fundador Libres",
+      "profileRole" :  "Fundador Voces Libres",
       "xUrl" : "https://twitter.com/ArbonaManu"
     },
   };

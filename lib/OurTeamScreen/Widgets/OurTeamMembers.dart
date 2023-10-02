@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../exports.dart';
 
 class OurTeamMembers extends StatelessWidget{
@@ -14,7 +16,7 @@ class OurTeamMembers extends StatelessWidget{
   Widget build(BuildContext context){
     return Container(
       width: getDeviceWidth(context),
-      height: getDeviceHeight(context) * 0.7,
+      height: getDeviceHeight(context) * 0.8,
       margin: EdgeInsets.only(
         left: getDeviceWidth(context) * 0.02,
         right: getDeviceWidth(context) * 0.02
@@ -25,7 +27,7 @@ class OurTeamMembers extends StatelessWidget{
           itemBuilder: (context, index){
             return Container(
               width: getDeviceWidth(context) * 0.4,
-              height: getDeviceHeight(context) * 0.4,
+              height: getDeviceHeight(context) * 0.45,
               margin: EdgeInsets.only(
                 left: getDeviceWidth(context) * 0.05,
                 right: getDeviceWidth(context) * 0.05
@@ -34,14 +36,15 @@ class OurTeamMembers extends StatelessWidget{
                 children: [
                   // Profile Picture
                   Container(
-                    width: getDeviceWidth(context) * 0.35,
+                    width: kIsWeb ? getDeviceWidth(context) * 0.1 : getDeviceWidth(context) * 0.35,
                     height: getDeviceHeight(context) * 0.2,
                     margin: EdgeInsets.only(
                       top: getDeviceWidth(context) * 0.02,
                       bottom: getDeviceWidth(context) * 0.02,
-                      left: getDeviceWidth(context) * 0.025,
-                      right: getDeviceWidth(context) * 0.025
-                    ),
+                      left: kIsWeb ? getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.025,
+                      right: kIsWeb ? getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.025
+
+            ),
                     decoration: BoxDecoration(
                       boxShadow: [BoxShadow(color: Colors.black, offset: Offset.zero, blurStyle: BlurStyle.normal, blurRadius: 9)],
                       borderRadius: BorderRadius.circular(256),
@@ -55,7 +58,7 @@ class OurTeamMembers extends StatelessWidget{
                   // Profile Details
                   Container(
                     width: getDeviceWidth(context) * 0.4,
-                    height: getDeviceHeight(context) * 0.4,
+                    height: getDeviceHeight(context) * 0.48,
                     child: Column(
                       children: [
                         // Profile Name
@@ -96,6 +99,26 @@ class OurTeamMembers extends StatelessWidget{
                               const Spacer(),
                           ],
                           )
+                        ),
+
+                        // X Profile
+                        InkWell(
+                          onTap: () async {
+                            await launchUrl(Uri.parse(viewModel.members[index].xUrl));
+                          },
+                          child : Container(
+                          width: getDeviceWidth(context) * 0.4,
+                          height: getDeviceHeight(context) * 0.1,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(30),
+                            image: DecorationImage(
+                              image: AssetImage("assets/logos/x.jpg"),
+                              fit: BoxFit.fitHeight,
+                              alignment: Alignment.center
+                            )
+                          ),
+                         )
                         ),
 
 
