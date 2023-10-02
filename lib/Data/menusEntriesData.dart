@@ -24,7 +24,7 @@ class MenusEntriesData {
       "menu": "Sobre Nosotros",
       "route": "WhereWeAreScreen"
     },
-    "Manifiestos Políticos": {
+    "Manifiesto Político": {
       "menu": "Documentos",
       "route": "ManifestScreen"
     },

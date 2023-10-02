@@ -37,3 +37,6 @@ export 'WhereWeAreScreen/whereWeAreScreen_model.dart';
 export 'WhereWeAreScreen/whereWeAreScreen_view.dart';
 export 'WhoWeAreScreen/whoWeAreScreen_model.dart';
 export 'WhoWeAreScreen/whoWeAreScreen_view.dart';
+export 'ManifestScreen/manifestScreen_model.dart';
+export 'ManifestScreen/manifestScreen_view.dart';
+export 'ManifestScreen/Widgets/manifestViewer.dart';

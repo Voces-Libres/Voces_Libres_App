@@ -80,6 +80,7 @@ flutter:
     - assets/carteles/
     - assets/eventos/
     - assets/members/
+    - assets/manifest/
 
 
 flutter_icons:
