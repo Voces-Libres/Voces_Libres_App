@@ -36,7 +36,7 @@ class OurTeamMembers extends StatelessWidget{
                 children: [
                   // Profile Picture
                   Container(
-                    width: kIsWeb ? getDeviceWidth(context) * 0.1 : getDeviceWidth(context) * 0.35,
+                    width: kIsWeb && getDeviceWidth(context) > 400 ? getDeviceWidth(context) * 0.1 : getDeviceWidth(context) * 0.35,
                     height: getDeviceHeight(context) * 0.2,
                     margin: EdgeInsets.only(
                       top: getDeviceWidth(context) * 0.02,
