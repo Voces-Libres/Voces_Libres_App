@@ -3,33 +3,34 @@ import '../exports.dart';
 class MembersData{
 
   static Map<String,dynamic> membersMap = {
+
+    "Hugo Pérez Ayán" :  {
+      "profilePicture" : "assets/members/hugo_ayan.jpg",
+      "profileRole" :  "Presidente Voces Libres",
+      "xUrl" : "https://x.com/hp_ayan"
+    },
+
+    "Jon Echevarria" :  {
+      "profilePicture" : "assets/members/jon_echevarria.jpg",
+      "profileRole" :  "Secretario General",
+      "xUrl" : "https://x.com/Jon_Echeverria_"
+    },
+
     "Álvaro Galván" :  {
       "profilePicture" : "assets/members/alvaro_galvan.jpg",
       "profileRole" :  "Responsable de Comunicación",
       "xUrl" : "https://x.com/AlvaroGalvanSt"
     },
 
-    "Hugo Ayan" :  {
-      "profilePicture" : "assets/members/hugo_ayan.jpg",
-      "profileRole" :  "Presidente",
-      "xUrl" : "https://x.com/hp_ayan"
-    },
-
-    "Jon Echevarria" :  {
-      "profilePicture" : "assets/members/jon_echevarria.jpg",
-      "profileRole" :  "Secretario",
-      "xUrl" : "https://x.com/Jon_Echeverria_"
-    },
-
     "Julia Palma" :  {
       "profilePicture" : "assets/members/julia_palma.jpg",
-      "profileRole" :  "Fundadora Voces Libres",
-      "xUrl" : "https://x.com/Jon_Echeverria_"
+      "profileRole" :  "Responsable Relaciones Institucionales",
+      "xUrl" : "https://x.com/juuliapalmaa"
     },
 
     "Manuel Arbona" :  {
       "profilePicture" : "assets/members/manuel_arbona.jpg",
-      "profileRole" :  "Fundador Voces Libres",
+      "profileRole" :  "Responsable Acción Política",
       "xUrl" : "https://twitter.com/ArbonaManu"
     },
   };

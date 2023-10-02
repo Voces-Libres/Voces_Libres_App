@@ -41,8 +41,8 @@ class OurTeamMembers extends StatelessWidget{
                     margin: EdgeInsets.only(
                       top: getDeviceWidth(context) * 0.02,
                       bottom: getDeviceWidth(context) * 0.02,
-                      left: kIsWeb ? getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.025,
-                      right: kIsWeb ? getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.025
+                      left: kIsWeb && getDeviceWidth(context) > 400 ?  getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.025,
+                      right: kIsWeb && getDeviceWidth(context) > 400 ? getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.025
 
             ),
                     decoration: BoxDecoration(
